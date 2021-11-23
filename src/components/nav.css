@@ -1,0 +1,48 @@
+/* https://www.w3schools.com/howto/howto_js_topnav_responsive.asp */
+.topnav {
+    background-color: #7684b6;
+    overflow:hidden;
+}
+.topnav p {
+    float:left;
+    display:block;
+    text-align:center;
+    padding: 14px 16px;
+    color:#f5f5f5;
+    border-radius: 5px;
+    font-size: 17px;
+}
+.topnav p:hover{
+    background-color: #55618d;
+    color:#fff;
+    cursor:pointer;
+}
+.topnav p.active {
+    background-color: #8091ce;
+    color:white;
+}
+.topnav .icon{
+    display:none;
+}
+@media  screen and (max-width: 600px){
+    .topnav p:not(:first-child){
+        display:none;
+    }
+    .topnav p.icon{
+        float:right;
+        display:block;
+    }
+    .topnav.responsive {
+        position: relative;
+    }
+    .topnav.responsive p.icon{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topnav.responsive p{
+        float:none;
+        display:block;
+        text-align: left;
+    }
+}
