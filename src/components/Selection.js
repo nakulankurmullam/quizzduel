@@ -1,7 +1,7 @@
 import React from 'react'
 import './Selection.css'
 
-function Selection() {
+function Selection({setShowQuestion}) { 
     return (
         <div  className="container-sel">
             <div className="card">
@@ -29,7 +29,7 @@ function Selection() {
                         <p>duel</p>
                     </div>
                 </div>
-                <button id="start-btn">START!!</button>
+                <button onClick={() => {setShowQuestion(true)}} id="start-btn">START!!</button>
             </div>
         </div>
     )

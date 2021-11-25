@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function Signup() {
-    return (
-        <div>
-            signup page
-        </div>
-    )
+  return (
+    <div>
+       This is the modal signup 
+    </div>
+  );
 }
 
-export default Signup
+export default Signup;
