@@ -6,11 +6,15 @@ import Question from './Question'
 
 function Home() {
     const [showQuestion, setShowQuestion] = useState(false)
+    const [selections, setSelections] = useState({
+        difficulty:'',
+        category:null
+    })
     return (
-        <div className="container blue-grey darken-3">
-            <Nav/>
-            {!showQuestion && <Selection setShowQuestion={setShowQuestion}/>}
-            {showQuestion && <Question/>}
+        <div className="container">
+            <Nav currentlyActive="HOME"/>
+            {!showQuestion && <Selection setShowQuestion={setShowQuestion} setSelections={setSelections} />}
+            {showQuestion && <Question setShowQuestion={setShowQuestion} selections={selections} />}
         </div>
     )
 }

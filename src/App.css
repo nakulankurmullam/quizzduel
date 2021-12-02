@@ -2,3 +2,6 @@
 .App{
     background-color: #4A5261;
 }
+button:hover{
+    cursor: pointer;
+}

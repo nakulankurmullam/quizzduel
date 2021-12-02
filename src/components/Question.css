@@ -13,6 +13,7 @@
     margin: 10px;
     height: 450px;
 }
+
 .container-quest {
     width: 100%;
     height: 80%;
@@ -39,4 +40,10 @@
 }
 span:hover{
     background-color: rgb(70, 70, 70)
+}
+#finish-btn{
+    background-color:rgba(49, 83, 194, 0.712);
+    font-weight: bold;
+    border-radius: 5px;
+    color:white;
 }
