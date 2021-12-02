@@ -68,11 +68,15 @@ function Selection({ setShowQuestion, setSelections }) {
         </div>
         <button
           onClick={() => {
-            setSelections({
-              difficulty,
-              category,
-            });
-            setShowQuestion(true);
+            if (!difficulty && !category)
+              alert("You must select a category and difficulty.");
+            else {
+              setSelections({
+                difficulty,
+                category,
+              });
+              setShowQuestion(true);
+            }
           }}
           id="start-btn"
         >

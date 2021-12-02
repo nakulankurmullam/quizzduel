@@ -12,10 +12,18 @@ function Question({ setShowQuestion , selections }) {
   const {category,difficulty} = selections
   let url = baseUrl
   if(category && difficulty) {
-    url = `${baseUrl}&category=${selections.category}&difficulty=${selection.difficulty}`
+    url = `${baseUrl}&category=${selections.category}&difficulty=${selections.difficulty}`
   }
   let { data, loading } = useFetch(url);
-  let { options, correctIndex } = randomize(data, questNum);
+  let randomized = {options:[],correctIndex:null}
+  if(data && !loading) {
+    if(data.results.length === 0){
+      alert('oops , looks like we messed up , unable to fetch questions')
+      
+    }
+    randomized = randomize(data, questNum);
+  }
+  let {options,correctIndex} = randomized;
   return questNum === 9 ? (
     <Results selection={selection} />
   ) : loading && !data ? (
