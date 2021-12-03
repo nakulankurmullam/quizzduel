@@ -1,28 +1,10 @@
 import React from "react";
 import "./nav.css";
 import { useNavigate } from "react-router-dom";
+import {signOut} from "firebase/auth"
 
 export default function Nav({currentlyActive}) {
   let nav = useNavigate();
-//   function setActive(currentlyActive) {  
-//     let home = document.getElementById("HOME"),
-//       profile = document.getElementById("PROFILE"),
-//       logout = document.getElementById("LOGOUT");
-//     home.className = "inactive";
-//     profile.className = "inactive";
-//     logout.className = "inactive";
-//     switch (currentlyActive) {
-//       case "HOME":
-//         home.className = "active";
-//         break;
-//       case "LOGOUT":
-//         logout.className = "active";
-//         break;
-//       case "PROFILE":
-//         profile.className = "active";
-//         break;
-//     }
-//   }
   return (
     <div className="topnav" id="myTopNav">
       <p
@@ -45,7 +27,13 @@ export default function Nav({currentlyActive}) {
       </p>
       <p
         onClick={() => {
-          nav('/login');
+          let confirmed = window.confirm("Are you sure you want to log out?")
+          if(confirmed) {
+            signOut().then(() => {
+              nav('/login');
+            });  
+          }
+          
         }}
         id="LOGOUT"
         className={currentlyActive==="LOGOUT"?"active":""}

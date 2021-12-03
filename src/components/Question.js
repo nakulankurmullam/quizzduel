@@ -1,42 +1,43 @@
 import React, { useState } from "react";
 import "./Question.css";
-import { baseUrl } from "../utility/constants";
-import useFetch from "../utility/useFetch";
+import { baseUrl } from "../assets/constants";
+import useFetch from "../assets/useFetch";
 import { parseEntities } from "parse-entities";
 import Results from "./Results";
-import { randomize } from "../utility/helperFuncs";
+import { randomize } from "../assets/helperFuncs";
 
 function Question({ setShowQuestion , selections }) {
   const [questNum, setQuestNum] = useState(0);
   const [selection, setSelection] = useState([]);
-  const {category,difficulty} = selections
-  let url = baseUrl
+  const {category,difficulty} = selections;
+  let url = baseUrl;
   if(category && difficulty) {
-    url = `${baseUrl}&category=${selections.category}&difficulty=${selections.difficulty}`
+    url = `${baseUrl}&category=${selections.category}&difficulty=${selections.difficulty}`;
   }
   let { data, loading } = useFetch(url);
   let randomized = {options:[],correctIndex:null}
   if(data && !loading) {
     if(data.results.length === 0){
       alert('oops , looks like we messed up , unable to fetch questions')
-      
+      // nav("/")
     }
     randomized = randomize(data, questNum);
   }
   let {options,correctIndex} = randomized;
+  console.log(selections)
   return questNum === 9 ? (
     <Results selection={selection} />
-  ) : loading && !data ? (
+  ) : loading && !data ? ( 
     <div className="container-quest">
       <div className="card-q">
         <div id="question">
           <h1>
-            <i className="fas fa-spinner"></i>
+            <i className="fas fa-spinner"></i> 
           </h1>
         </div>
         <div className="options">
           <span>
-            <i className="fas fa-spinner"></i>
+            <i className="fas fa-spinner"></i> 
           </span>
         </div>
         <button id="finish-btn">FINISH</button>
@@ -59,7 +60,7 @@ function Question({ setShowQuestion , selections }) {
                   {
                     questNum,
                     isCorrect: i === correctIndex,
-                  },
+                  }
                 ]);
                 setQuestNum(questNum + 1);
               }}

@@ -84,11 +84,11 @@
 }
 .custom-select {
   position: relative;
-  width:200px;
+  width:275px;
   display:flex;
 }
 .custom-select > select {
-  background-color: rgb(0, 186, 199);
+  background-color: rgb(0, 179, 179);
   height: 50px;
   border-radius: 5px;
   border: 1px rgba(5, 134, 85, 0.281);
@@ -99,7 +99,6 @@
 }
 select.selection:focus::after{
   border:none ;
-
 }
 .selection > option {
   background-color: #00949e;

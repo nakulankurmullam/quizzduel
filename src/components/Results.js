@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import {userDetailsContext} from '../App';
+import {UserDetailsContext} from '../assets/contexts';
 
 //temp high score till firebase integration
 let highScore = 0;
 function Results({ selection }) {
   let localScore = selection.filter((element) => element.isCorrect).length;
-  let {score,setScore} = useContext(userDetailsContext)
+  let {score,setScore} = useContext(UserDetailsContext)
   setScore(localScore)
   return score <= highScore ? (
     <div>

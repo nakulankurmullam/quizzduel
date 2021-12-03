@@ -6,7 +6,7 @@
   align-items: center;
 }
 .modal-box {
-  background-color: rgb(221, 212, 201);
+  background-color: rgba(255, 255, 255, 0.274);
   color: black;
   float: left;
   display: flex;
@@ -23,7 +23,7 @@
 .header{
     display: flex;
     flex-direction: row;
-    background-color:rgb(28, 150, 150);
+    background-color:#7684b6;
     width:100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -67,9 +67,11 @@ input[type="text"], input[type="password"]:focus{
     cursor: pointer;
 }
 #login-btn{
-    border:none;
-    background-color:rgb(121, 189, 112);
+    border:solid 3px rgb(0, 204, 255);
+    background-color:rgba(121, 189, 112, 0);
     border-radius:5px;
-    height:25px;
-    color:rgb(209, 209, 209);
+    height:40px;
+    font-size:18px;
+    width:100px;
+    color:rgb(0, 204, 255);
 }

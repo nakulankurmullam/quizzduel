@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState ,  useContext } from "react";
 import "./Profile.css";
 import "./profile.png";
 import { useNavigate } from "react-router-dom";
+import {UserDetailsContext} from '../assets/contexts'
 import Nav from "./Nav";
 
 function Profile() {
+  const {userInfo} = useContext(UserDetailsContext)
   const [editable, setEditable] = useState(false);
   const nav = useNavigate();
   return (
@@ -38,14 +40,14 @@ function Profile() {
                     id="files"
                   />
                 </div>
-                <label htmlFor="uname">User Name</label>
+                <label htmlFor="uname">{userInfo.userName}</label>
                 <input
                   type="text"
                   className="profile-input"
                   id="uname"
                   placeholder="name"
                 />
-                <label htmlFor="bio">Description</label>
+                <label htmlFor="bio">{userInfo.description}</label>
                 <input
                   type="text"
                   className="profile-input"
@@ -66,8 +68,8 @@ function Profile() {
                   width="200"
                   height="200"
                 />
-                <h4 id="uname-read-only">Username</h4>
-                <h4 id="bio-read-only">Description</h4>
+                <h4 id="uname-read-only">{userInfo.userName}</h4>
+                <h4 id="bio-read-only">{userInfo.description}</h4>
                 <button className="edit-btn" onClick={() => setEditable(true)}>
                   <i className="fa-solid fa-edit"></i>
                 </button>

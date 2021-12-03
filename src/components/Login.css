@@ -6,9 +6,10 @@
     align-items: center;
 }
 #signup-btn{
-    border:none;
-    background-color:rgb(95, 189, 82);
+    border:rgb(0, 90, 163) solid 3px ;
+    background-color:rgba(94, 189, 82, 0);
     border-radius:5px;
-    height:25px;
-    color:rgb(209, 209, 209);
+    font-size:15px;
+    height:40px;
+    color:white;
 }

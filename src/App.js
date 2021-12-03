@@ -1,21 +1,17 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import {UserDetailsContext} from './assets/contexts'
 
-export const userDetailsContext = createContext(null);
 
 function App() {
-  const [score, setScore] = useState(null);
-  let uDetails = {
-    score,
-    setScore
-  };
+  const [userInfo , setUserInfo] = useState({userName:'',description:''})
   return (
-    <userDetailsContext.Provider value={uDetails}>
+    <UserDetailsContext.Provider value={{userInfo,setUserInfo}}>
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -24,7 +20,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
-    </userDetailsContext.Provider>
+    </UserDetailsContext.Provider>
   );
 }
 
