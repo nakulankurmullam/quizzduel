@@ -2,6 +2,7 @@ import React from "react";
 import "./nav.css";
 import { useNavigate } from "react-router-dom";
 import {signOut} from "firebase/auth"
+import {auth} from '../firebase/firebaseConfig'
 
 export default function Nav({currentlyActive}) {
   let nav = useNavigate();
@@ -29,8 +30,10 @@ export default function Nav({currentlyActive}) {
         onClick={() => {
           let confirmed = window.confirm("Are you sure you want to log out?")
           if(confirmed) {
-            signOut().then(() => {
+            signOut(auth).then(() => {
               nav('/login');
+            }).catch(err => {
+              console.error(err);
             });  
           }
           

@@ -1,3 +1,4 @@
+
 export function randomize(data, questNum) {
   let options = [],
     correctIndex = 0;

@@ -9,7 +9,11 @@ import {UserDetailsContext} from './assets/contexts'
 
 
 function App() {
-  const [userInfo , setUserInfo] = useState({userName:'',description:''})
+  const [userInfo , setUserInfo] = useState({
+    userName: '',
+    description: '',
+    uid:null
+  })
   return (
     <UserDetailsContext.Provider value={{userInfo,setUserInfo}}>
       <div className="App">

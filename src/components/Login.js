@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-//eslint-disable-next-line
 import { auth, db } from "../firebase/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext, UserDetailsContext } from "../assets/contexts";
 
@@ -27,9 +27,14 @@ function Login() {
       });
       if (userCredentials) {
         userInfo.uid = userCredentials.user.uid;
-        setUserInfo(userInfo);
-        setIsOnline(true);
-        nav("/");
+        const docRef = doc(db, "users", userCredentials.user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.data()) {
+          userInfo.userName = docSnap.data().userName;
+          setUserInfo(userInfo);
+          setIsOnline(true);
+          nav("/");
+        }
       }
     })();
   };

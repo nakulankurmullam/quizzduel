@@ -2,14 +2,16 @@ import React, { useState ,  useContext } from "react";
 import "./Profile.css";
 import "./profile.png";
 import { useNavigate } from "react-router-dom";
-import {UserDetailsContext} from '../assets/contexts'
+import {UserDetailsContext , AuthContext } from '../assets/contexts'
 import Nav from "./Nav";
+import Login from "./Login";
 
 function Profile() {
   const {userInfo} = useContext(UserDetailsContext)
+  const {isOnline} = useState(AuthContext)
   const [editable, setEditable] = useState(false);
   const nav = useNavigate();
-  return (
+  return isOnline? (
     <>
       <Nav currentlyActive="PROFILE"/>
       <div className="profile-container">
@@ -55,6 +57,7 @@ function Profile() {
                   placeholder="bio"
                 />
                 <button className="edit-btn" onClick={() => setEditable(false)}>
+                  SAVE
                   <i className="fa-solid fa-save"></i>
                 </button>
               </div>
@@ -79,7 +82,7 @@ function Profile() {
         </div>
       </div>
     </>
-  );
+  ):(<Login/>)
 }
 
 export default Profile;

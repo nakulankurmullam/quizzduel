@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "./Signup.css";
 import { useNavigate } from "react-router";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebaseConfig";
 import { UserDetailsContext, AuthContext } from "../assets/contexts";
 
@@ -14,7 +14,7 @@ function Signup() {
     if (password.length < 8) {
       alert("Please enter a valid password");
     }
-    if (confirmed)
+    if (password.length >= 8 && confirmed)
       (async () => {
         let userCredentials = await createUserWithEmailAndPassword(
           auth,
@@ -26,12 +26,13 @@ function Signup() {
         userInfo.userName = userName;
         if (userCredentials) {
           userInfo.uid = userCredentials.user.uid;
-          const docRef = await addDoc(collection(db,'users'),{
-            id:userCredentials.user.uid,  
+          await setDoc(doc(db, "users", userInfo.uid), {
+            uid: userCredentials.user.uid,
             userName: userName,
-            email: email
-          })
-          console.log(docRef)
+            email: email,
+          }).catch((e) => {
+            console.error("an error occured while creating user", e);
+          });
           setUserInfo(userInfo);
           setIsOnline(true);
           nav("/");
@@ -97,7 +98,9 @@ function Signup() {
           <button id="submit-btn">SUBMIT</button>
           <p>already have an account ?</p>
         </form>
-        <button id="login-btn">LOGIN</button>
+        <button onClick={() => nav("/login")} id="login-btn">
+          LOGIN
+        </button>
       </div>
     </div>
   );
